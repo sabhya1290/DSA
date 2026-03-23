@@ -56,9 +56,24 @@ bool LinearSearch(vector<int> v,int size, int target){
     
     if(size == 0){return false;}
 
-    bool ans = LinearSearch(v, size - 1, target) || false;
+    bool ans = LinearSearch(v, size - 1, target);
 
     return (ans);
+}
+
+bool BinarySearch(vector<int> v, int s, int e, int target){
+    
+    
+    if(s > e){
+        return false;
+    }
+    
+    int m = (s + e) /2;
+
+    if(v[m] == target) return true;
+
+    else if(v[m] > target) return BinarySearch(v, s, m - 1, target);
+    else if(v[m] < target) return BinarySearch(v, m + 1, e, target);
 
 
 }
@@ -72,16 +87,23 @@ int main(){
 
     // sayDigit(312);
 
-    vector<int> v = {2,4,6,7,11,2,14};
+    // vector<int> v = {2,4,6,7,11,14};
     // bool ans = isSorted(v , v.size());
     // cout << ans << endl;
 
     // int ans = arraySum(v, v.size() - 1);
     // cout << ans << endl;
 
-    bool ans = LinearSearch(v, v.size() - 1, 31);
+    // bool ans = LinearSearch(v, v.size() - 1, 14);
+    // if(ans) cout << "Found" << endl;
+    // else cout << "Not Found" << endl;
+
+
+    vector<int> v = {2,3,4,5,9,12,16};
+    bool ans = BinarySearch(v, 0, v.size(), 16);
     if(ans) cout << "Found" << endl;
     else cout << "Not Found" << endl;
+    
 
 
 }
